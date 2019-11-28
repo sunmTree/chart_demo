@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>v-charts</title>
+</head>
+<body>
+<div id="app">
+    <ve-histogram :data="chartData" :extend="extend"></ve-histogram>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            this.extend = {
+                width: 800,  // 柱状图整体宽度
+                series: {
+                    label: { // 柱状图上面数值以及加单位
+                        show: true,
+                        position: "top",
+                        formatter: "{c} %", // 设置单位
+                        color: '#aea' // 柱子的字体颜色
+                    },
+                    barWidth: 10, // 柱子的宽度
+                    color: '#faf' // 柱子的颜色
+                },
+                tooltip: {   // 鼠标选中浮窗层
+                    show: false
+                },
+                legend: {   // 是否显示图例
+                    show: false
+                },
+                yAxis: {
+                    type: 'value',
+                    splitNumber: 5,   // Y轴分割份数
+                    axisLabel: {      // Y轴精确到小数点
+                        formatter: function (value, index) {
+                            return value.toFixed(3) + "%"  // Y轴显示的值
+                        }
+                    }
+                },
+                xAxis: {
+                    axisLabel: {
+                        fontSize: 10,  // x轴字体大小
+                        rotate: 45,    // x轴旋转角度  正数时逆时针旋转，负数时顺时针旋转
+                        fontStyle: "bold" // 字体样式
+                    }
+                },
+                dataZoom: [ // 设置是否有滚动条以及样式属性
+                    {
+                        id: 'dataZoomX',
+                        type: 'slider',     // inside 设置不显示下方滑动条， slider 显示滑动条
+                        xAxisIndex: [0],    // 控制第几个轴，xAxisIndex 控制的是X轴，
+                        show: true,       // 是否显示下发进度条
+                        backgroundColor: '#1c1f21',   // 设置进度条背景颜色
+                        fillerColor: "#4aa0ee",   // 进度条选中区域颜色
+                        handleIcon: 'image://https://www.easyicon.net/api/resizeApi.php?id=1236480&size=128', // 进度条两边的手柄 (图片)
+                        height: 20,     // 设置尺寸
+                        showDetail: false,   // 是否显示两边选中的数值
+                        start: 20,   // 进度条起始位置
+                        end: 60,       // 进度条结束位置     end - start 代表的时进度条的长度 (整个进度条的百分比)
+                        zoomLock: true   // 设置进度条不能缩放
+                    }
+                ]
+            }
+            return {
+                chartData: {
+                    columns: ['日期', '访问用户'],
+                    rows: [
+                        {'日期': '1/1<<<<<<', '访问用户': 0.0013},
+                        {'日期': '1/2<<<<<<', '访问用户': 0.003530},
+                        {'日期': '1/3<<<<<<', '访问用户': 0.002923},
+                        {'日期': '1/4<<<<<<', '访问用户': 0.001723},
+                        {'日期': '1/5<<<<<<', '访问用户': 0.003792},
+                        {'日期': '1/6<<<<<<', '访问用户': 0.004593},
+                        {'日期': '1/7<<<<<<', '访问用户': 0.001723},
+                        {'日期': '1/8<<<<<<', '访问用户': 0.003792},
+                        {'日期': '1/9<<<<<<', '访问用户': 0.004593},
+                        {'日期': '1/11<<<<<<', '访问用户': 0.0013},
+                        {'日期': '1/12<<<<<<', '访问用户': 0.003530},
+                        {'日期': '1/13<<<<<<', '访问用户': 0.002923},
+                        {'日期': '1/14<<<<<<', '访问用户': 0.001723},
+                        {'日期': '1/15<<<<<<', '访问用户': 0.003792},
+                        {'日期': '1/16<<<<<<', '访问用户': 0.004593},
+                        {'日期': '1/17<<<<<<', '访问用户': 0.001723},
+                        {'日期': '1/18<<<<<<', '访问用户': '-'},
+                        {'日期': '1/19<<<<<<', '访问用户': '-'}
+                    ]
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

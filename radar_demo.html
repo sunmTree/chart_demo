@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>v-charts</title>
+</head>
+<body>
+<div id="app">
+    <ve-radar :data="chartData" :settings="chartSettings" :extend="chartExtend"></ve-radar>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            this.chartSettings = {
+                dimension: ['time'],
+                metrics: ['cmi', 'costDepletion', 'drgNum', 'lowRiskMortality', 'timeExpended', 'totalWeight'],
+                labelMap: {
+                    'time': '日期',
+                    'cmi': 'CMI',
+                    'costDepletion': 'COSTDEPLETION',
+                    'drgNum': 'DRGNUM',
+                    'lowRiskMortality': '低风险死亡率',
+                    'timeExpended': '时间消耗指数',
+                    'totalWeight': '权重'
+                },
+                dataType: {'CMI': 'percent', '权重': 'KMB', '低风险死亡率': 'percent'}  // 设置维度名称
+            }
+            return {
+                chartExtend: {
+                    radar: {
+                        indicator: [   // 设置最大值和维度名称
+                            {name: 'cmi', max: 1},
+                            {name: 'costDepletion', max: 2},
+                            {name: 'drgNum', max: 500},
+                            {name: '低风险死亡率', max: 1},
+                            {name: '时间消耗指数', max: 400},
+                            {name: '权重', max: 10000}
+                        ]
+                    },
+                    legend: {
+                        show: false
+                    }
+
+                },
+                chartData: {
+                    columns: ['time', 'cmi', 'costDepletion', 'drgNum', 'lowRiskMortality', 'timeExpended', 'totalWeight'],
+                    rows: [
+                        { 'time': 2019, 'cmi': 0.83, 'costDepletion': 1.18,
+                            'drgNum': 399.00, 'lowRiskMortality': 0.04, 'timeExpended': 325.07, 'totalWeight': 9155.94}
+                    ]
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

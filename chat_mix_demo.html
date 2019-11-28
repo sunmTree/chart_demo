@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>v-charts</title>
+</head>
+<body>
+<div id="app">
+    <ve-histogram :data="chartData" :settings="chartSettings" :extend="chartExtend"></ve-histogram>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            this.chartSettings = {
+                showLine: ['下单率', 'Demo'],
+                axisSite: { right: ['下单率', 'Demo'] },  // 设定那个指标对应右侧Y轴
+                yAxisType: ['normal', 'percent'],
+            }
+            return {
+                chartExtend: {
+                    color: ['#ad2', '#aa4119', '#56c2da', '#e22dca'],  // 设置圆柱颜色
+                    series: {
+                        barGap: '0%',  // 柱状图间的间距
+                        smooth: false,  // 折线图是否显示圆弧
+                        symbol: 'circle',  // 折点是否实心
+                        symbolSize: 10,   //设定实心点的大小
+                    }
+                },
+                chartData: {
+                    columns: ['日期', '门诊人次数', '出院人次数', '下单率', 'Demo'],
+                    rows: [
+                        {'日期': '1月', '门诊人次数': 1393, '出院人次数': 1093, '下单率': 0.784, 'Demo': 0.3},
+                        {'日期': '2月', '门诊人次数': 3530, '出院人次数': 3230, '下单率': 0.206, 'Demo': 0.206},
+                        {'日期': '3月', '门诊人次数': 2923, '出院人次数': 2623, '下单率': 0.86, 'Demo': 0.49},
+                        {'日期': '4月', '门诊人次数': 1723, '出院人次数': 1123, '下单率': 0.49, 'Demo': 0.11},
+                        {'日期': '5月', '门诊人次数': 5792, '出院人次数': 3492, '下单率': 0.323, 'Demo': 0.33},
+                        {'日期': '6月', '门诊人次数': 4593, '出院人次数': 4293, '下单率': 0.718, 'Demo': 0.63},
+                        {'日期': '7月', '门诊人次数': 7593, '出院人次数': 5293, '下单率': 0.6718, 'Demo': 0.101},
+                        {'日期': '8月', '门诊人次数': 593, '出院人次数': 293, '下单率': 0.3718, 'Demo': 0.9},
+                        {'日期': '9月', '门诊人次数': 1593, '出院人次数': 1293, '下单率': 0.9718, 'Demo': 0.55},
+                        {'日期': '10月', '门诊人次数': 2593, '出院人次数': 2293, '下单率': 0.5718, 'Demo': 0.33},
+                        {'日期': '11月', '门诊人次数': 3593, '出院人次数': 3293, '下单率': 0.4718, 'Demo': 0.1},
+                        {'日期': '12月', '门诊人次数': 8593, '出院人次数': 8293, '下单率': 0.318, 'Demo': 0.4}
+                    ]
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
