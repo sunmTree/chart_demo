@@ -46,7 +46,11 @@
                         }
                     },
                     legend: {
-
+                        data: [   // 设置不同图例的显示图标
+                            {name: "门诊人次数", icon: 'roundRect'}, // 长方形
+                            {name: "出院人次数", icon: 'square'},  // 正方形
+                            {name: "下单率", icon: 'circle'}  // 原型
+                        ]
                     }
                 },
                 chartData: {
