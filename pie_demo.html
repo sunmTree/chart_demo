@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>v-charts</title>
+</head>
+<body>
+<div id="app">
+    <ve-pie :data="chartData" :extend="extend" :settings="chartSettings"></ve-pie>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            this.extend = {
+                series: {
+                    type: 'pie',   // type 无实际意义，用于指示设置的是饼图
+                    label: {        //  设置饼图文本标签
+                        normal: {
+                            position: 'inner', // 设置文本标签的位置， 'inner' 设置在扇形内部 'outside' 设置在扇形外部
+                            formatter: '{d}%'       // 设置标签内文本
+                        }
+                    },
+                    center: ['40%', '50%'], // 饼图的中心（圆心）坐标，数组的第一项是横坐标，第二项是纵坐标。
+                    radius: ['0%', '45%'], // 设置饼图的类型，第一个参数时圆心的半径，0是实心，非0是空心；第二个参数是外圆半径
+                },
+                color: ['rgba(255, 203, 21, 1)', 'rgba(60, 184, 255, 1)'],  // 设置扇形的颜色
+                legend: {
+                    orient: 'vertical',  // 图例的排列方式，vertical 代表垂直排列，‘horizontal’ 代表水平排列
+                    bottom: '10%',  // 图例距离容器底部的距离
+                    left: '37%'  // 图例距离容器左侧的距离，当饼图不在中间时需要设置它，让图例在饼图的正下发
+                },
+            }
+            return {
+                chartData: {
+                    columns: ['name', 'value'],
+                    rows: [
+                        {'name': '四级手术比例', 'value': 0.374},
+                        {'name': '微创手术占比', 'value': 0.626}
+                    ]
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
