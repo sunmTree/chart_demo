@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>v-charts</title>
+</head>
+<body>
+<div id="app">
+    <ve-histogram :data="chartData" :extend="extend" :settings="chartSettings"></ve-histogram>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            this.chartSettings = {
+                labelMap: {
+                    'user': '目标用户'
+                }
+            }
+            this.extend = {
+                series: {
+                    label: { // 柱状图上面数值以及加单位
+                        show: true,
+                        position: "top",
+                        formatter: "{c} %", // 设置单位
+                        color: '#ee2549' // 柱子的字体颜色
+                    },
+                    color: '#6298ff' // 柱子的颜色
+                },
+                legend: {   // 是否显示图例
+                    show: true
+                },
+                yAxis: {   // Y轴设置
+                    type: 'value',  // Y轴类型
+                    position: 'left',  // Y轴所在位置
+                    axisLine: {  // 显示Y轴竖线，单轴的设置position 只显示一个Y轴竖线
+                        show: true
+                    },
+                    axisTick: {  // Y轴标签
+                        show: true,
+                        inside: true
+                    }
+                }
+            }
+            return {
+                chartData: {
+                    columns: ['data', 'user'],
+                    rows: [
+                        {'data': '1/1<', 'user': 0.13},
+                        {'data': '1/2<', 'user': 0.3530},
+                        {'data': '1/3<', 'user': 0.2923},
+                        {'data': '1/4<', 'user': 0.1723},
+                        {'data': '1/5<', 'user': 0.3792},
+                        {'data': '1/6<', 'user': 0.4593},
+                        {'data': '1/7<', 'user': 0.1723},
+                        {'data': '1/8<', 'user': 0.3792},
+                    ]
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
