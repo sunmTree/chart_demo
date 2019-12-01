@@ -22,7 +22,11 @@
                     label: {        //  设置饼图文本标签
                         normal: {
                             position: 'inner', // 设置文本标签的位置， 'inner' 设置在扇形内部 'outside' 设置在扇形外部
-                            formatter: '{d}%'       // 设置标签内文本
+                            formatter: '{d}%',       // 设置标签内文本
+                            textStyle: {
+                                color: '#000',  // 设置标签内文字颜色
+                                fontSize: 17    // 设置标签文字字体大小
+                            }
                         }
                     },
                     center: ['40%', '50%'], // 饼图的中心（圆心）坐标，数组的第一项是横坐标，第二项是纵坐标。
