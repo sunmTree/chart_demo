@@ -11,7 +11,6 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
 <script>
     new Vue({
         el: '#app',
@@ -51,6 +50,36 @@
                             {name: "出院人次数", icon: 'square'},  // 正方形
                             {name: "下单率", icon: 'circle'}  // 原型
                         ]
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisTick: {  // 坐标轴刻度相关设置
+                            show: true,
+                            inside: true  // 刻度的位置，inside 设置为true, 刻度显示在内部
+                        },
+                        axisLine: {
+                            show: true,
+                            lineStyle: {
+                                color: '#818181'
+                            }
+                        },
+                        textStyle: {
+                            color: '#5a5a5a'
+                        },
+                        splitLine: {  // 设置图表中间区域分割线
+                            lineStyle: {  // 设置分割线的样式
+                                color: '#E9E9E9'  // 设置分割线颜色
+                            }
+                        }
+                    },
+                    tooltip: {  // 提示框组件
+                        trigger: 'axis',  // 触发类型， 'axis' 是坐标轴触发
+                        axisPointer: {  // 坐标轴指示器配置项
+                            type: 'cross',  // 指示器类型   line 直线指示器， shadow 阴影指示器 cross 十字准星指示器
+                            crossStyle: {   // 指示器线颜色
+                                color: '#39ee20'
+                            }
+                        }
                     }
                 },
                 chartData: {
@@ -74,5 +103,6 @@
         }
     })
 </script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
 </body>
 </html>

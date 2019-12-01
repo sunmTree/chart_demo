@@ -41,6 +41,19 @@
                         formatter: function (value, index) {
                             return value.toFixed(3) + "%"  // Y轴显示的值
                         }
+                    },
+                    axisTick: {  // 坐标轴刻度相关设置
+                        show: true,
+                        inside: true  // 刻度的位置，inside 设置为true, 刻度显示在内部
+                    },
+                    axisLine: {
+                        show: true,
+                        lineStyle: {
+                            color: '#818181'
+                        }
+                    },
+                    textStyle: {
+                        color: '#5a5a5a'
                     }
                 },
                 xAxis: {
