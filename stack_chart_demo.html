@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>v-charts</title>
+</head>
+<body>
+<div id="app">
+    <ve-histogram :data="chartData" :settings="chartSettings" :extend="chartExtend"></ve-histogram>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            this.chartSettings = {
+                showLine: ['orderPercent', 'demoPercent'],  //  那些数据使用折线图显示
+                axisSite: {right: ['orderPercent', 'demoPercent']},  // 设定那个指标对应右侧Y轴
+                yAxisType: ['normal', 'percent'],  // Y轴显示的数据类型
+                stack: {'total': ['value', 'numberValue']},  // 堆叠的方式实现
+                labelMap: {   // 设置鼠标弹窗显示文字
+                    'value': '门诊收入',
+                    'numberValue': '住院收入',
+                    'orderPercent': '医疗收入增幅',
+                    'demoPercent': '医疗服务占比'
+                }
+            }
+            return {
+                chartExtend: {
+                    color: ['#1F80DB', '#FFCB15', '#18CA00', '#F295BD'],  // 设置圆柱颜色
+                    series: {
+                        barGap: '0%',  // 柱状图间的间距
+                        smooth: false,  // 折线图是否显示圆弧
+                        symbol: 'circle',  // 折点是否实心
+                        symbolSize: 10,   //设定实心点的大小
+                    },
+                    legend: {
+                        data: [   // 设置不同图例的显示图标, legend中的名字需要和 labelMap 里面的一致，不然不会显示
+                            {name: "门诊收入", icon: 'square'}, // 长方形
+                            {name: "住院收入", icon: 'square'},  // 正方形
+                            {name: "医疗收入增幅", icon: 'circle'},  // 圆型
+                            {name: "医疗服务占比", icon: 'circle'},  // 圆型
+                        ]
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisTick: {  // 坐标轴刻度相关设置
+                            show: true,
+                            inside: true  // 刻度的位置，inside 设置为true, 刻度显示在内部
+                        },
+                        axisLine: {
+                            show: true,
+                            lineStyle: {
+                                color: '#818181'
+                            }
+                        },
+                        textStyle: {
+                            color: '#5a5a5a'
+                        },
+                        splitLine: {  // 设置图表中间区域分割线
+                            show: false,  // 是否显示分割线
+                            lineStyle: {  // 设置分割线的样式
+                                color: '#E9E9E9'  // 设置分割线颜色
+                            }
+                        },
+                        splitNumber: 5
+                    },
+                    tooltip: {  // 提示框组件
+                        trigger: 'axis',  // 触发类型， 'axis' 是坐标轴触发
+                        axisPointer: {  // 坐标轴指示器配置项
+                            type: 'cross',  // 指示器类型   line 直线指示器， shadow 阴影指示器 cross 十字准星指示器
+                            crossStyle: {   // 指示器线颜色
+                                color: '#39ee20'
+                            }
+                        }
+                    }
+                },
+                chartData: {
+                    columns: ['time', 'value', 'numberValue', 'orderPercent', 'demoPercent'],
+                    rows: [
+                        {
+                            time: '1月',
+                            value: 1393,
+                            numberValue: 1093,
+                            orderPercent: 0.784,
+                            demoPercent: 0.3
+                        },
+                        {
+                            time: '2月',
+                            value: 3530,
+                            numberValue: 3230,
+                            orderPercent: 0.206,
+                            demoPercent: 0.206
+                        },
+                        {
+                            time: '3月',
+                            value: 2923,
+                            numberValue: 2623,
+                            orderPercent: 0.86,
+                            demoPercent: 0.49
+                        },
+                        {
+                            time: '4月',
+                            value: 1723,
+                            numberValue: 1123,
+                            orderPercent: 0.49,
+                            demoPercent: 0.11
+                        },
+                        {
+                            time: '5月',
+                            value: 5792,
+                            numberValue: 3492,
+                            orderPercent: 0.323,
+                            demoPercent: 0.33
+                        },
+                        {
+                            time: '6月',
+                            value: 4593,
+                            numberValue: 4293,
+                            orderPercent: 0.718,
+                            demoPercent: 0.63
+                        },
+                        {
+                            time: '7月',
+                            value: 7593,
+                            numberValue: 5293,
+                            orderPercent: 0.6718,
+                            demoPercent: 0.101
+                        },
+                        {
+                            time: '8月',
+                            value: 593,
+                            numberValue: 293,
+                            orderPercent: 0.3718,
+                            demoPercent: 0.9
+                        },
+                        {
+                            time: '9月',
+                            value: 1593,
+                            numberValue: 1293,
+                            orderPercent: 0.9718,
+                            demoPercent: 0.55
+                        },
+                        {
+                            time: '10月',
+                            value: 2593,
+                            numberValue: 2293,
+                            orderPercent: 0.5718,
+                            demoPercent: 0.33
+                        },
+                        {
+                            time: '11月',
+                            value: 3593,
+                            numberValue: 3293,
+                            orderPercent: 0.4718,
+                            demoPercent: 0.1
+                        },
+                        {
+                            time: '12月',
+                            value: 8593,
+                            numberValue: 8293,
+                            orderPercent: 0.318,
+                            demoPercent: 0.4
+                        }
+                    ]
+                },
+            }
+        }
+    })
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
+</body>
+</html>
